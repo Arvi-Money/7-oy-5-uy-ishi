@@ -1,0 +1,31 @@
+.container{
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.form{
+  width: 500px;
+  margin: 2rem auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form{ 
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+form input{
+  height: 30px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid black;
+}
+
+.save{
+  color: white;
+  margin-bottom: 2rem;
+}
