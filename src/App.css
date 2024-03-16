@@ -29,3 +29,7 @@ form input{
   color: white;
   margin-bottom: 2rem;
 }
+
+span{
+  cursor: pointer;
+}

@@ -4,29 +4,24 @@ import { useRef } from 'react';
 
 
 function App() {
-  const forms = useSelector(state => state.form.forms)
+  const forms = useSelector(state => state.form.form)
   const nameRef = useRef();
   const ageRef = useRef();
   const dispatch = useDispatch();
 
+  console.log(forms);
+
   function handleClick(e) {
     e.preventDefault();
-    if (nameRef.current.value) {
-      let names = {
+    if (nameRef.current.value && ageRef.current.value) {
+      let user = {
         id: Date.now(),
-        forms: nameRef.current.value
+        name: nameRef.current.value,
+        age: ageRef.current.value
       }
-      dispatch({ type: 'ADD', payload: names })
-        nameRef.current.value = '';
-    }
-
-    if (ageRef.current.value) {
-      let ages = {
-        id: Date.now(),
-        forms: ageRef.current.value
-      }
-      dispatch({ type: 'ADD', payload: ages })
-        ageRef.current.value = '';
+      dispatch({ type: 'ADD', payload: user })
+      nameRef.current.value = "";
+      ageRef.current.value = "";
     }
   }
 
@@ -40,12 +35,12 @@ function App() {
         <div className="form">
           <form>
             <div className='d-flex flex-column'>
-              <label htmlFor="" className='mb-1'>Name</label>
-              <input type="text" placeholder='Enter your name...' className='px-2' ref={nameRef} />
+              <label htmlFor="name" className='mb-1'>Name</label>
+              <input type="text" placeholder='Enter your name...' id='name' className='px-2' ref={nameRef} />
             </div>
             <div className='d-flex flex-column'>
-              <label htmlFor="" className='mb-1'>Age</label>
-              <input type="number" placeholder='Enter your age...' className='px-2' ref={ageRef} />
+              <label htmlFor="age" className='mb-1'>Age</label>
+              <input type="number" placeholder='Enter your age...' id='age' className='px-2' ref={ageRef} />
             </div>
           </form>
           <div className="btn save bg-success" onClick={handleClick}>Save</div>
@@ -65,11 +60,11 @@ function App() {
                   return (
                     <tr key={index}>
                       <th scope="row">1</th>
-                      <td>{el.names}</td>
-                      <td>{el.ages}</td>
+                      <td>{el.name}</td>
+                      <td>{el.age }</td>
                       <td className='d-flex gap-3 align-items-center'>
-                        <span className='text-info' onClick={handleDelete}>Update</span>
-                        <span className='text-danger'>Delete</span>
+                        <span className='text-info'>Update</span>
+                        <span className='text-danger' onClick={() => {handleDelete(el.id)}}>Delete</span>
                       </td>
                     </tr>
                   )
